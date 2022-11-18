@@ -15,7 +15,7 @@ class Pokemon:
         self.defenseSpe = defenseSpe        
         self.speed = speed
 
-r = requests.get("https://pokeapi.co/api/v2/pokemon/3")
+r = requests.get("https://pokeapi.co/api/v2/pokemon/4")
 
 result = r.json()
 
