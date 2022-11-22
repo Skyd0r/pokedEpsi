@@ -5,6 +5,7 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QLabel
 from PyQt5.QtGui import QPixmap, QImage
+from itertools import product
 
 
 
@@ -24,19 +25,19 @@ class Pokemon:
         self.defenseSpe = defenseSpe        
         self.speed = speed
 
-numchoice = 150
+numchoice = 1
 r = requests.get("https://pokeapi.co/api/v2/pokemon/"+str(numchoice))
 result = r.json()
 
 bulbasaur = Pokemon(result["id"], result["name"], result["types"][0]["type"]["name"], result["height"], result["weight"], result["stats"][0]["base_stat"], result["stats"][1]["base_stat"], result["stats"][2]["base_stat"], result["stats"][3]["base_stat"], result["stats"][4]["base_stat"], result["stats"][5]["base_stat"])
 
-s1 = 151
-r2 = requests.get("https://pokeapi.co/api/v2/pokemon?limit="+str(s1)+"&offset=0")
+s = 898
+r2 = requests.get("https://pokeapi.co/api/v2/pokemon?limit="+str(s)+"&offset=0")
 resultLst = r2.json()
 
 nb = 0
 PokemonsLst = resultLst["results"][nb]["name"]
-for i in range (0, s1-1):
+for i in range (0, s-1):
 
     nb = nb + 1
     PokemonsLst = PokemonsLst +","+resultLst["results"][nb]["name"]
@@ -61,6 +62,10 @@ class MainWindow(QDialog):
 
         self.ChooseList.addItems(PokemonsLst)
         self.ChooseList.setEditable(True)
+        self.ChooseList.setInsertPolicy(QtWidgets.QComboBox.NoInsert)
+        self.ChooseList.completer().setCompletionMode(QtWidgets.QCompleter.PopupCompletion)
+
+        self.ButtonShow.pressed.connect(self.show)
 
 
         name = bulbasaur.nom
@@ -76,10 +81,13 @@ class MainWindow(QDialog):
         num = str(bulbasaur.num)
         self.Num.setText(num)
 
-        type1 = bulbasaur.type1
-        self.Type1.setText(type1)
+        types = []
+        type = result["types"]
+        for t in type:
+            types.append(t["type"]["name"])
 
-        # self.Type2.setText(type2)
+        types = ',  '.join(types)
+        self.Type1.setText(str(types))
 
         hp = str(bulbasaur.pv)
         self.PV.setText(hp)
@@ -110,12 +118,178 @@ class MainWindow(QDialog):
         self.ButtonBack.clicked.connect(self.moins)
 
 
+    def show(self):
+
+        pokename = self.ChooseList.currentText()
+
+        urlChoice = "https://pokeapi.co/api/v2/pokemon/"+ pokename
+        r = requests.get(str(urlChoice))
+        result = r.json()
+
+        bulbasaur = Pokemon(result["id"], result["name"], result["types"][0]["type"]["name"], result["height"], result["weight"], result["stats"][0]["base_stat"], result["stats"][1]["base_stat"], result["stats"][2]["base_stat"], result["stats"][3]["base_stat"], result["stats"][4]["base_stat"], result["stats"][5]["base_stat"])
+
+
+        name = bulbasaur.nom
+        cap_name = name.title()
+        self.Name.setText(cap_name)
+
+        url_img = result["sprites"]["front_default"]
+        image = QImage()
+        image.loadFromData(requests.get(url_img).content)
+        bigger_img = image.scaled(361, 361)
+        self.ImagePokemon.setPixmap(QPixmap(bigger_img))
+
+        num = str(bulbasaur.num)
+        self.Num.setText(num)
+
+        types = []
+        type = result["types"]
+        for t in type:
+            types.append(t["type"]["name"])
+
+        types = ',  '.join(types)
+        self.Type1.setText(str(types))
+
+        hp = str(bulbasaur.pv)
+        self.PV.setText(hp)
+
+        weight = str(bulbasaur.weight / 10)
+        self.Weight.setText(weight)
+
+        height = str(bulbasaur.height / 10)
+        self.Height.setText(height)
+
+        attack = str(bulbasaur.attaque)
+        self.Attaque.setText(attack)
+
+        defense = str(bulbasaur.defense)
+        self.Defense.setText(defense)
+
+        attackSpe = str(bulbasaur.attaqueSpe)
+        self.AttaqueSpe.setText(attackSpe)
+
+        defenseSpe = str(bulbasaur.defenseSpe)
+        self.DefenseSpe.setText(defenseSpe)
+
+        speed = str(bulbasaur.speed)
+        self.Speed.setText(speed)
+
+
     def plus(self):
-        numchoice = numchoice + 1
+
+        numchoice = self.Num.text()
+
+        numchoice = int(numchoice) + 1
+
+        urlChoice = "https://pokeapi.co/api/v2/pokemon/"+ str(numchoice)
+        r = requests.get(str(urlChoice))
+        result = r.json()
+
+        bulbasaur = Pokemon(result["id"], result["name"], result["types"][0]["type"]["name"], result["height"], result["weight"], result["stats"][0]["base_stat"], result["stats"][1]["base_stat"], result["stats"][2]["base_stat"], result["stats"][3]["base_stat"], result["stats"][4]["base_stat"], result["stats"][5]["base_stat"])
+
+
+        name = bulbasaur.nom
+        cap_name = name.title()
+        self.Name.setText(cap_name)
+
+        url_img = result["sprites"]["front_default"]
+        image = QImage()
+        image.loadFromData(requests.get(url_img).content)
+        bigger_img = image.scaled(361, 361)
+        self.ImagePokemon.setPixmap(QPixmap(bigger_img))
+
+        num = str(bulbasaur.num)
+        self.Num.setText(num)
+
+        types = []
+        type = result["types"]
+        for t in type:
+            types.append(t["type"]["name"])
+
+        types = ',  '.join(types)
+        self.Type1.setText(str(types))
+
+        hp = str(bulbasaur.pv)
+        self.PV.setText(hp)
+
+        weight = str(bulbasaur.weight / 10)
+        self.Weight.setText(weight)
+
+        height = str(bulbasaur.height / 10)
+        self.Height.setText(height)
+
+        attack = str(bulbasaur.attaque)
+        self.Attaque.setText(attack)
+
+        defense = str(bulbasaur.defense)
+        self.Defense.setText(defense)
+
+        attackSpe = str(bulbasaur.attaqueSpe)
+        self.AttaqueSpe.setText(attackSpe)
+
+        defenseSpe = str(bulbasaur.defenseSpe)
+        self.DefenseSpe.setText(defenseSpe)
+
+        speed = str(bulbasaur.speed)
+        self.Speed.setText(speed)
 
     def moins(self):
-        numchoice = numchoice - 1
 
+        numchoice = self.Num.text()
+
+        numchoice = int(numchoice) - 1
+
+        urlChoice = "https://pokeapi.co/api/v2/pokemon/"+ str(numchoice)
+        r = requests.get(str(urlChoice))
+        result = r.json()
+
+        bulbasaur = Pokemon(result["id"], result["name"], result["types"][0]["type"]["name"], result["height"], result["weight"], result["stats"][0]["base_stat"], result["stats"][1]["base_stat"], result["stats"][2]["base_stat"], result["stats"][3]["base_stat"], result["stats"][4]["base_stat"], result["stats"][5]["base_stat"])
+
+
+        name = bulbasaur.nom
+        cap_name = name.title()
+        self.Name.setText(cap_name)
+
+        url_img = result["sprites"]["front_default"]
+        image = QImage()
+        image.loadFromData(requests.get(url_img).content)
+        bigger_img = image.scaled(361, 361)
+        self.ImagePokemon.setPixmap(QPixmap(bigger_img))
+
+        num = str(bulbasaur.num)
+        self.Num.setText(num)
+
+        types = []
+        type = result["types"]
+        for t in type:
+            types.append(t["type"]["name"])
+
+        types = ',  '.join(types)
+        self.Type1.setText(str(types))
+
+        hp = str(bulbasaur.pv)
+        self.PV.setText(hp)
+
+        weight = str(bulbasaur.weight / 10)
+        self.Weight.setText(weight)
+
+        height = str(bulbasaur.height / 10)
+        self.Height.setText(height)
+
+        attack = str(bulbasaur.attaque)
+        self.Attaque.setText(attack)
+
+        defense = str(bulbasaur.defense)
+        self.Defense.setText(defense)
+
+        attackSpe = str(bulbasaur.attaqueSpe)
+        self.AttaqueSpe.setText(attackSpe)
+
+        defenseSpe = str(bulbasaur.defenseSpe)
+        self.DefenseSpe.setText(defenseSpe)
+
+        speed = str(bulbasaur.speed)
+        self.Speed.setText(speed)
 
 
 # main

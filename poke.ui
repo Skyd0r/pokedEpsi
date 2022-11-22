@@ -432,7 +432,7 @@
     <rect>
      <x>640</x>
      <y>260</y>
-     <width>101</width>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>
@@ -497,6 +497,9 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-radius : 25px;
@@ -534,6 +537,9 @@ QPushButton:pressed {
      <bold>true</bold>
     </font>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
 	border-radius : 25px;
@@ -557,9 +563,9 @@ QPushButton:pressed {
   <widget class="QComboBox" name="ChooseList">
    <property name="geometry">
     <rect>
-     <x>650</x>
-     <y>30</y>
-     <width>151</width>
+     <x>670</x>
+     <y>60</y>
+     <width>131</width>
      <height>31</height>
     </rect>
    </property>
@@ -568,7 +574,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>810</x>
-     <y>20</y>
+     <y>50</y>
      <width>81</width>
      <height>51</height>
     </rect>
@@ -579,6 +585,9 @@ QPushButton:pressed {
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
@@ -599,6 +608,24 @@ QPushButton:pressed {
    </property>
    <property name="text">
     <string>Show</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_13">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>10</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Search/Choose a pokemon :</string>
    </property>
   </widget>
   <zorder>Background</zorder>
@@ -631,6 +658,7 @@ QPushButton:pressed {
   <zorder>ButtonBack</zorder>
   <zorder>ChooseList</zorder>
   <zorder>ButtonShow</zorder>
+  <zorder>label_13</zorder>
  </widget>
  <resources>
   <include location="pokimage.qrc"/>
