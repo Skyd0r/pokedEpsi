@@ -15,4 +15,4 @@ Comment ça fonctionne :
 
 
 
-Si problèmes de lancement, verifiez d'avoir bien installé PYQT5 et requests
+Si problèmes de lancement, verifiez d'avoir bien installé Python, PYQT5 et Requests
