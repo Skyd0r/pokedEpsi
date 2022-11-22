@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>2200032_50ba6.jpg</file>
+    <file>2200032_50ba6.jpg</file>
+    <file>bulbasaur.png</file>
+  </qresource>
+</RCC>
