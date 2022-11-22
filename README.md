@@ -1,6 +1,8 @@
-Groupe : Romain Poitrenaud, Paul Messant, Christopher Lebon, Etienne Godefroy
+Groupe : Romain Poitrenaud, Paul Messiant, Christopher Lebon, Etienne Godefroy
 
 
-Comment ça fonctionne : telecharger les differents fichier et lancer le fichier "Pokedex.py", l'application pokedex se lancera.
-Vous pouvez choisir dans la liste en haut a gauche un pokemon ou taper le nom de celui-ci dans cette meme liste.
-Vous pouvez aussi faire defiller les pokemons grace au boutons "Next" et "Back".
+Comment ça fonctionne : 
+
+  -Télécharger les différents fichiers dans un même répertoire et lancer le fichier "Pokedex.py", l'application pokédex se lancera.
+  -Vous pouvez choisir dans la liste en haut à gauche un pokemon ou taper le nom de celui-ci dans cette même liste.
+  -Vous pouvez aussi faire defiller les pokemons grace au boutons "Next" et "Back".
