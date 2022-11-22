@@ -11,3 +11,8 @@ Comment ça fonctionne :
   
   
 ![TestPokedex.jpg](TestPokedex.jpg)
+
+
+
+
+Si problèmes de lancement, verifiez d'avoir bien installé PYQT5 et requests
