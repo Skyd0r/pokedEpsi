@@ -10,4 +10,4 @@ Comment ça fonctionne :
   - Vous pouvez aussi faire defiller les pokemons grace au boutons "Next" et "Back".
   
   
-![TestPokedex.jpg](TestPokedex.jgp)
+![TestPokedex.jpg](TestPokedex.jpg)
